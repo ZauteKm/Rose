@@ -20,7 +20,7 @@ RUN git clone -b master https://github.com/ZauteKm/Rose /root/Rose
 WORKDIR /root/Rose
 
 # Copy folder
-COPY ./tg_bot/sample_config.py ./tg_bot/config.py* /root/tg_bot/tg_bot/
+COPY ./tg_bot/config.py ./tg_bot/config.py* /root/tg_bot/tg_bot/
 
 ENV PATH="/home/bot/bin:$PATH"
 
