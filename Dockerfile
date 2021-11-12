@@ -13,14 +13,14 @@ RUN apt-get update && \
     gcc \
     git \
     make \
-    && rm -rf /var/lib/apt/lists /var/cache/apt/archives /tmp
+    && rm -rf /sample_config/lib/apt/lists /sample_config/cache/apt/archives /tmp
 
 # Enter Workplace
 RUN git clone -b master https://github.com/ZauteKm/Rose /root/Rose
 WORKDIR /root/Rose
 
 # Copy folder
-COPY ./tg_bot/config.py ./tg_bot/config.py* /root/tg_bot/tg_bot/
+COPY ./tg_bot/sample_config.py ./tg_bot/sample_config.py* /root/tg_bot/tg_bot/
 
 ENV PATH="/home/bot/bin:$PATH"
 
