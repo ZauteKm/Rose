@@ -18,9 +18,10 @@ from tg_bot.modules.helper_funcs.chat_status import is_user_admin
 from tg_bot.modules.helper_funcs.misc import paginate_modules
 
 PM_START_TEXT = """
-Hey there! My name is *{}*, I'm here to help you manage your groups! Hit /help to find out more about how to use me to my full potential.
+Hey there! My name is *{}*,
+I'm here to help you manage your groups! Hit /help to find out more about how to use me to my full potential.
 
-Join my [news channel](https://t.me/ProIndians) to get information on all the latest updates.
+Join my [news channel](https://t.me/mizotginfotel) to get information on all the latest updates.
 """
 
 HELP_STRINGS = """
@@ -36,11 +37,11 @@ I have lots of handy features, such as flood control, a warning system, a note k
 All commands can be used with the following: / !
 """.format(dispatcher.bot.first_name, "" if not ALLOW_EXCL else "If you have any bugs or questions on how to use me, have a look at my [Group](https://t.me/ProHelpDesk), or head to @ProIndians.")
 
-DONATE_STRING = """Heya, glad to hear you want to donate!
-It took lots of work for [my creator](t.me/SonOfLars) to get me to where I am now, and every donation helps \
-motivate him to make me even better. All the donation money will go to a better VPS to host me, and/or beer \
-(see his bio!). He's just a poor student, so every little helps!
-There are two ways of paying him; [PayPal](paypal.me/PaulSonOfLars), or [Monzo](monzo.me/paulnionvestergaardlarsen)."""
+DONATE_STRING = """So you want to donate? Amazing!
+When you donate, all the fund goes towards my development which makes on fast and responsive.
+Your donation might also me get me a new feature or two, which I wasn't able to get due to server limitations.
+All the fund would be put into my services such as database, storage and hosting!
+You can donate by contacting my owner here: @ZauteBot"""
 
 IMPORTED = {}
 MIGRATEABLE = []
@@ -135,7 +136,7 @@ def start(bot: Bot, update: Update, args: List[str]):
                                     reply_markup=InlineKeyboardMarkup(
                                         [[InlineKeyboardButton(text="Add me to your chat!", url="t.me/{}?startgroup=true".format(bot.username))]]))
     else:
-        update.effective_message.reply_text("Hello all Join @ProIndians.")
+        update.effective_message.reply_text("I'm Alive.")
 
 
 # for test purposes
@@ -182,7 +183,7 @@ def help_button(bot: Bot, update: Update):
             query.message.reply_text(text=text,
                                      parse_mode=ParseMode.MARKDOWN,
                                      reply_markup=InlineKeyboardMarkup(
-                                         [[InlineKeyboardButton(text="Back", callback_data="help_back")]]))
+                                         [[InlineKeyboardButton(text="« Back", callback_data="help_back")]]))
 
         elif prev_match:
             curr_page = int(prev_match.group(1))
@@ -236,7 +237,7 @@ def get_help(bot: Bot, update: Update):
         module = args[1].lower()
         text = "Here is the available help for the *{}* module:\n".format(HELPABLE[module].__mod_name__) \
                + HELPABLE[module].__help__
-        send_help(chat.id, text, InlineKeyboardMarkup([[InlineKeyboardButton(text="Back", callback_data="help_back")]]))
+        send_help(chat.id, text, InlineKeyboardMarkup([[InlineKeyboardButton(text="« Back", callback_data="help_back")]]))
 
     else:
         send_help(chat.id, HELP_STRINGS)
